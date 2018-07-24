@@ -22,11 +22,6 @@ while 1:
         print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
         #elif event.code == 'REL_Y':
         #    print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
-
-
-    #movements.extend([event.state for event in events if event.code == "REL_Y"])
-
-while 1:
     events_mouse = m2.read()
     for event2 in events_mouse:
         print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
