@@ -22,8 +22,8 @@ while 1:
         print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
         #elif event.code == 'REL_Y':
         #    print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
-    events_mouse = m2.read()
-    for event2 in events_mouse:
-        print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
+    #events_mouse = m2.read()
+    #for event2 in events_mouse:
+     #   print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
 
