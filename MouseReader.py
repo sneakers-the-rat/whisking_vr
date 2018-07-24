@@ -6,7 +6,7 @@ from inputs import devices
 # Handle for getting mouse events
 #mouse = devices.mice[0]
 m = devices.mice[0]
-m2 = devices.mice[2]
+m2 = devices.mice[1]
 #mouse2 = devices.mice[1]
 #mice = {'mouse_1':mouse}
 #        'mouse_2':mouse2}
