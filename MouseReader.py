@@ -28,7 +28,7 @@ while 1:
 
 while 1:
     events_mouse = m2.read()
-    for event2 in events_mouse
+    for event2 in events_mouse:
         print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
 
