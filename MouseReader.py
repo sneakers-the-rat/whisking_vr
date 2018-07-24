@@ -6,6 +6,7 @@ from inputs import devices
 # Handle for getting mouse events
 #mouse = devices.mice[0]
 m = devices.mice[0]
+m2 = devices.mice[2]
 #mouse2 = devices.mice[1]
 #mice = {'mouse_1':mouse}
 #        'mouse_2':mouse2}
@@ -24,5 +25,9 @@ while 1:
 
 
     #movements.extend([event.state for event in events if event.code == "REL_Y"])
+
+while 1:
+    events = m2.read()
+    print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
 
 
