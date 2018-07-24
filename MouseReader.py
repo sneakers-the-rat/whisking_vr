@@ -27,7 +27,8 @@ while 1:
     #movements.extend([event.state for event in events if event.code == "REL_Y"])
 
 while 1:
-    events = m2.read()
-    print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
+    events2 = m2.read()
+    for event2 in events2
+        print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
 
