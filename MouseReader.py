@@ -46,8 +46,8 @@ class event(object):
    #     event2 = m2.read()
     #    print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
-mouse_1 = threading.Thread(name='mouse1', target=event, args = (M1,))
-mouse_2 = threading.Thread(name='mouse2', target=event, args = (M2,))
+mouse_1 = threading.Thread(name='mouse1', target=mouse, args = (M1,))
+mouse_2 = threading.Thread(name='mouse2', target=mouse, args = (M2,))
 
 mouse_1.start()
 mouse_2.start()
