@@ -138,8 +138,8 @@ while True:
     B = time.time()
     #print BX
     print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta)
+    time.sleep(0.005)
     
-    time.sleep(.005)
     
         
 ##
