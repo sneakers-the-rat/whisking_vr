@@ -85,7 +85,7 @@ while 1:
                 x1 = event.state
                 t = event.timestamp
                 #print x1
-         elif event.code == 'REL_Y':
+            elif event.code == 'REL_Y':
                 #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
                 y1 = event.state
                 #print y1
