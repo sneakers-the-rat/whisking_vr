@@ -137,7 +137,7 @@ while True:
     #return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
     B = time.time()
     #print BX
-    print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta)
+    print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     time.sleep(0.005)
     
     
