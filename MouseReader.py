@@ -30,8 +30,8 @@ from inputs import devices
 ###################### Let's try with thread ###########
 import threading
 from inputs import devices
-m = device.mice[0]
-m2 = device.mice[1]
+m = devices.mice[0]
+m2 = devices.mice[1]
 
 
 def mouse1():
