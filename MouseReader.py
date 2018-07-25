@@ -110,7 +110,7 @@ while True:
     for queue in queues:
         events = queue_get_all(queue)
         if len(events) == 0:
-            dfs.append(pd.DataFrame('REL_X':0, 'REL_Y':0))
+            dfs.append(pd.DataFrame('REL_X' = 0, 'REL_Y' = 0))
         else
             dfs.append(pd.DataFrame.from_records(events).sum(0))
 
