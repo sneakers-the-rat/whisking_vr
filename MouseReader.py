@@ -94,14 +94,14 @@ while True:
     for queue in queues:
         events = queue_get_all(queue)
         if len(events) == 0:
-            dfs.append(pd.DataFrame({'REL_X' : [0], 'REL_Y' : [0]}))
+            dfs.append(pd.DataFrame({'x' : [0], 'y' : [0]}))
         else:
             dfs.append(pd.DataFrame.from_records(events).sum(0))
 
-    x1 = dfs[0].REL_X
-    x2 = dfs[1].REL_X
-    y1 = dfs[0].REL_Y
-    y2 = dfs[1].REL_Y                                
+    x1 = dfs[0].x
+    x2 = dfs[1].x
+    y1 = dfs[0].y
+    y2 = dfs[1].y                                
     
     
     BdX = (x1+x2)/(2*COS45)
