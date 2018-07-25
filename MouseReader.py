@@ -83,17 +83,19 @@ while 1:
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
             y1 = event.state
             #print y1
-    events2 = m2.read()
-    for event2 in events2:
-        if event2.code == 'REL_X':
-            #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
-            x2 = event2.state
-            t2 = event2.timestamp
-        elif event.code == 'REL_Y':
+    #events2 = m2.read()
+    #for event2 in events2:
+     #   if event2.code == 'REL_X':
+      #      #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
+       #     x2 = event2.state
+        #    t2 = event2.timestamp
+        #elif event.code == 'REL_Y':
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
-            y2 = event2.state
-            t2 = event2.timestamp
-     
+         #   y2 = event2.state
+         #   t2 = event2.timestamp
+    t2 = 0
+    x2 = 0
+    y2 = 0
     time1 = t
     time2 = t2
     BdX = (x1+x2)/(2*COS45)
