@@ -100,8 +100,9 @@ while 1:
          #   y2 = event2.state
          #   t2 = event2.timestamp
     except:
-        pass
-        
+        x1 = 0
+        t = 0
+        y1 = 0
     BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
