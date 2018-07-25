@@ -90,7 +90,7 @@ queues = []
 mouse_threads = []
 for m_name, mouse in mice.items():
     queues.append(Queue())
-    mouse_threads.append(Thread(name=m_name, target=poll_mouse, args(mouse, queues[-1])))
+    mouse_threads.append(Thread(name=m_name, target=poll_mouse, args=(mouse, queues[-1])))
 
 for thread in mouse_threads:
     thread.start()
