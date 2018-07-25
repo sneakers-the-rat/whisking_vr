@@ -72,22 +72,22 @@ while 1:
     for event in events:
         if event.code == 'REL_X':
             #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
-            x1 = event.code
+            x1 = event.state
             t = event.timestamp
             print x1
         elif event.code == 'REL_Y':
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
-            y1 = event.code
+            y1 = event.state
             print y1
     events2 = m2.read()
     for event2 in events2:
         if event2.code == 'REL_X':
             #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
-            x2 = event2.code
+            x2 = event2.state
             t2 = event2.timestamp
         elif event.code == 'REL_Y':
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
-            y2 = event2.code
+            y2 = event2.state
             t2 = event2.timestamp
         def initData(self):
             self.data = np.zeros((1,8))
@@ -110,18 +110,20 @@ while 1:
             BTheta = lastTheta + BdTheta
             
             return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
-
+            print BX
+            print BY
+            print Btheta
                 
     #def plotTraj(self):
-     #   X = self.data[:,5]
-      #  Y = self.data[:,6]
+        #X = self.data[:,5]
+        #Y = self.data[:,6]
 
-       # plt.plot(X,Y)
+        #plt.plot(X,Y)
         #plt.axis('equal')
         #plt.hold(True)
-        #plt.draw()
-        #plt.show(block=False)
-        
+       # plt.draw()
+      #  plt.show(block=False)
+     #   
     #def plotHeading(self):
      #   t = self.data[:,0]
      #   Theta = self.data[:,7]
