@@ -37,6 +37,7 @@ def poll_mouse(mouse, out_queue):
             # if not, we assign the missing value zero and send it.
             frame['x'] = 1
             frame['y'] = 1
+            out_queue.put_nowait(frame)
             frame = {}
 ##            if len(frame) == 0:
 ##                if event.code == 'REL_X':
@@ -111,4 +112,4 @@ while True:
     B = time.time()
     #print BX
     print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
-    time.sleep(0.005)
+    time.sleep(0.1)
