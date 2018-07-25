@@ -7,8 +7,6 @@ import numpy as np
 import time
 # Handle for getting mouse events
 #mouse = devices.mice[0]
-m = devices.mice[1]
-m2 = devices.mice[2]
 
 ####################################
 #Run the loop, monitor for movements.
@@ -70,8 +68,8 @@ def poll_mouse(mouse, out_queue):
 ##                        
                     
 
-mice = {'mouse_0':devices.mice[1],
-        'mouse_1':devices.mice[2]}
+mice = {'mouse_0':devices.mice[0],
+        'mouse_1':devices.mice[1]}
 queues = []
 mouse_threads = []
 for m_name, mouse in mice.items():
@@ -112,4 +110,4 @@ while True:
     B = time.time()
     #print BX
     print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
-    time.sleep(0.1)
+    time.sleep(1)
