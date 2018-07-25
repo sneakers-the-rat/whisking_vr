@@ -30,7 +30,7 @@ def poll_mouse(mouse, out_queue):
             if event.code == "REL_X":
                 out_queue.put_nowait([event.state, 0])
             elif event.code == "REL_Y":
-                out.queue.put_nowait([0, event.state])
+                out_queue.put_nowait([0, event.state])
 
             
             # Y events and X events can happen independently
