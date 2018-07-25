@@ -30,8 +30,8 @@ from inputs import devices
 ###################### Let's try with thread ###########
 import threading
 from inputs import devices
-#m = devices.mice[0]
-#m2 = devices.mice[1]
+M1 = devices.mice[0]
+M2 = devices.mice[1]
 
 
 def mouse(m):
@@ -46,8 +46,8 @@ def mouse(m):
    #     event2 = m2.read()
     #    print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
-mouse_1 = threading.Thread(name='mouse1', target=mouse, args = (device.mice[0],))
-mouse_2 = threading.Thread(name='mouse2', target=mouse, args = (device.mice[1],))
+mouse_1 = threading.Thread(name='mouse1', target=mouse, args = (M1,))
+mouse_2 = threading.Thread(name='mouse2', target=mouse, args = (M2,))
 
 mouse_1.start()
 mouse_2.start()
