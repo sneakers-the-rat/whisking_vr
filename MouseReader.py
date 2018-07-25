@@ -35,37 +35,38 @@ def poll_mouse(mouse, out_queue):
             # we stash the timestamp, then compare each next event to see if it matches
             # if so, we assume we got the other one and send the frame
             # if not, we assign the missing value zero and send it.
-            
-            
-            if len(frame) == 0:
-                if event.code == 'REL_X':
-                    frame['ts'] = event.timestamp
-                    frame['x'] = event.state
-                elif event.code == 'REL_Y':
-                    frame['ts'] = event.timestamp
-                    frame['y'] = event.state
-            else:
-                if event.timestamp == frame['ts']:
-                    if event.code == 'REL_X':
-                        frame['ts'] = event.timestamp
-                        frame['x'] = event.state
-                        out_queue.put_nowait(frame)
-                        frame = {}
-                    elif event.code == 'REL_Y':
-                        frame['ts'] = event.timestamp
-                        frame['y'] = event.state
-                        out_queue.put_nowait(frame)
-                        frame = {}
-                else:
-                    if 'x' in frame.keys():
-                        frame['y'] = 0.
-                        out_queue.put_nowait(frame)
-                        frame = {}
-                    else:
-                        frame['x'] = 0.
-                        out.queue.put_nowait(frame)
-                        frame = {}
-                        
+            frame['x'] = 1
+            frame['y'] = 1
+            frame = {}
+##            if len(frame) == 0:
+##                if event.code == 'REL_X':
+##                    frame['ts'] = event.timestamp
+##                    frame['x'] = event.state
+##                elif event.code == 'REL_Y':
+##                    frame['ts'] = event.timestamp
+##                    frame['y'] = event.state
+##            else:
+##                if event.timestamp == frame['ts']:
+##                    if event.code == 'REL_X':
+##                        frame['ts'] = event.timestamp
+##                        frame['x'] = event.state
+##                        out_queue.put_nowait(frame)
+##                        frame = {}
+##                    elif event.code == 'REL_Y':
+##                        frame['ts'] = event.timestamp
+##                        frame['y'] = event.state
+##                        out_queue.put_nowait(frame)
+##                        frame = {}
+##                else:
+##                    if 'x' in frame.keys():
+##                        frame['y'] = 0.
+##                        out_queue.put_nowait(frame)
+##                        frame = {}
+##                    else:
+##                        frame['x'] = 0.
+##                        out.queue.put_nowait(frame)
+##                        frame = {}
+##                        
                     
 
 mice = {'mouse_0':devices.mice[1],
