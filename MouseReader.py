@@ -27,8 +27,46 @@ t2 = 0
 def poll_mouse(mouse, out_queue):
     while True:
         events = m.read()
-        event_dict = {event.code:event.state for event in events if event.code in ['REL_X', 'REL_Y']}
-        out_queue.put_nowait(event_dict)
+        frame = {}
+        for event in events:
+            # Y events and X events can happen independently
+            # yet we always want to return x and y for data consistency
+            # simultaneous x and y events will have the same timestamp
+            # we stash the timestamp, then compare each next event to see if it matches
+            # if so, we assume we got the other one and send the frame
+            # if not, we assign the missing value zero and send it.
+            
+            
+            if len(frame) == 0:
+                if event.code == 'REL_X':
+                    frame['ts'] = event.timestamp
+                    frame['x'] = event.state
+                elif event.code == 'REL_Y':
+                    frame['ts'] = event.timestamp
+                    frame['y'] = event.state
+            else:
+                if event.timestamp == frame['ts']:
+                    if event.code == 'REL_X':
+                        frame['ts'] = event.timestamp
+                        frame['x'] = event.state
+                        out_queue.put_nowait(frame)
+                        frame = {}
+                    elif event.code == 'REL_Y':
+                        frame['ts'] = event.timestamp
+                        frame['y'] = event.state
+                        out_queue.put_nowait(frame)
+                        frame = {}
+                else:
+                    if 'x' in frame.keys():
+                        frame['y'] = 0.
+                        out_queue.put_nowait(frame)
+                        frame = {}
+                    else:
+                        frame['x'] = 0.
+                        out.queue.put_nowait(frame)
+                        frame = {}
+                        
+                    
 
 mice = {'mouse_0':devices.mice[1],
         'mouse_1':devices.mice[2]}
