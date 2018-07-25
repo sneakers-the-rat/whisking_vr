@@ -108,9 +108,9 @@ while 1:
             # Coordinate system with +x (forward), +y (right), +theta (clockwise)
     DeltaPos = np.array([BdX, BdY, BdTheta]) 
             
-    lastX = data[-1, 8]
-    lastY = data[-1, 9]
-    lastTheta = data[-1, 10]
+    lastX = x1
+    lastY = y1
+    lastTheta = BdTheta
             
     BX = lastX + (BdX*np.cos(lastTheta)-BdY*np.sin(lastTheta))
     BY = lastY + (BdX*np.sin(lastTheta)+BdY*np.cos(lastTheta))
