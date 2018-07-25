@@ -1,7 +1,7 @@
 from inputs import devices
 #from threading import Timer
 import numpy as np
-
+import time
 
 # Handle for getting mouse events
 #mouse = devices.mice[0]
@@ -77,6 +77,7 @@ x2 = 0
 t = 0
 t2 = 0
 while 1:
+    A = time.now()
     events = m.read()
     try:
         for event in events:
@@ -100,9 +101,7 @@ while 1:
          #   y2 = event2.state
          #   t2 = event2.timestamp
     except:
-        x1 = 0
-        t = 0
-        y1 = 0
+        pass
     BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
@@ -118,7 +117,9 @@ while 1:
     BTheta = lastTheta + BdTheta
             
     #return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
+    B = time.now()
     print BX
+    print B-A
         #plotTraj(self):
         #X = self.data[:,5]
         #Y = self.data[:,6]
