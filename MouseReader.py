@@ -67,6 +67,10 @@ m2 = devices.mice[1]
 ####################################
 #Run the loop, monitor for movements.
 #movements = []
+data = np.zeros((1,8))
+COS45 = np.cos(np.pi/4)
+ballDiameter = 23  #mas o menos
+        
 while 1:
     events = m.read()
     for event in events:
@@ -74,11 +78,11 @@ while 1:
             #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
             x1 = event.state
             t = event.timestamp
-            print x1
+            #print x1
         elif event.code == 'REL_Y':
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
             y1 = event.state
-            print y1
+            #print y1
     events2 = m2.read()
     for event2 in events2:
         if event2.code == 'REL_X':
@@ -89,32 +93,26 @@ while 1:
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
             y2 = event2.state
             t2 = event2.timestamp
-        def initData(self):
-            self.data = np.zeros((1,8))
-            COS45 = np.cos(np.pi/4)
-            ballDiameter = 23  #mas o menos
-            time1 = t
-            time2 = t2
-            BdX = (y1+y2)/(2*COS45)
-            BdY = (y1-y2)/(2*COS45)
-            BdTheta = -1*(x1+x2)/(ballDiameter)
+     def initData(self):
+        time1 = t
+        time2 = t2
+        BdX = (y1+y2)/(2*COS45)
+        BdY = (y1-y2)/(2*COS45)
+        BdTheta = -1*(x1+x2)/(ballDiameter)
             # Coordinate system with +x (forward), +y (right), +theta (clockwise)
-            DeltaPos = np.array([BdX, BdY, BdTheta]) 
+        DeltaPos = np.array([BdX, BdY, BdTheta]) 
             
-            lastX = self.data[-1, 8]
-            lastY = self.data[-1, 9]
-            lastTheta = self.data[-1, 10]
+        lastX = data[-1, 8]
+        lastY = data[-1, 9]
+        lastTheta = data[-1, 10]
             
-            BX = lastX + (BdX*np.cos(lastTheta)-BdY*np.sin(lastTheta))
-            BY = lastY + (BdX*np.sin(lastTheta)+BdY*np.cos(lastTheta))
-            BTheta = lastTheta + BdTheta
+        BX = lastX + (BdX*np.cos(lastTheta)-BdY*np.sin(lastTheta))
+        BY = lastY + (BdX*np.sin(lastTheta)+BdY*np.cos(lastTheta))
+        BTheta = lastTheta + BdTheta
             
-            return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
-            print BX
-            print BY
-            print Btheta
-                
-    #def plotTraj(self):
+        return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
+        print BX
+        #plotTraj(self):
         #X = self.data[:,5]
         #Y = self.data[:,6]
 
