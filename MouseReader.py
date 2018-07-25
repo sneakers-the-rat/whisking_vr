@@ -33,8 +33,8 @@ def poll_mouse(mouse, out_queue):
             # we stash the timestamp, then compare each next event to see if it matches
             # if so, we assume we got the other one and send the frame
             # if not, we assign the missing value zero and send it.
-            frame['x'] = 1
-            frame['y'] = 1
+ #           frame['x'] = 1
+ #           frame['y'] = 1
             out_queue.put_nowait(frame)
             frame = {}
 ##            if len(frame) == 0:
@@ -112,4 +112,4 @@ while True:
     #print BX
     #print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     print('cycle time: {}, x1: {}, y1: {}, x2 : {}, y2 : {}'.format(B-A, x1, y1, x2, y2))
-    time.sleep(1)
+    time.sleep(2)
