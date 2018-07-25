@@ -110,7 +110,7 @@ while 1:
     BY = lastY + (BdX*np.sin(lastTheta)+BdY*np.cos(lastTheta))
     BTheta = lastTheta + BdTheta
             
-    return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
+    #return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
     print BX
         #plotTraj(self):
         #X = self.data[:,5]
