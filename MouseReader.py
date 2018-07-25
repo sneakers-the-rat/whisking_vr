@@ -96,7 +96,7 @@ while 1:
      
     time1 = t
     time2 = t2
-    BdX = (y1+y2)/(2*COS45)
+    BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
             # Coordinate system with +x (forward), +y (right), +theta (clockwise)
