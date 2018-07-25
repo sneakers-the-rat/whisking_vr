@@ -35,12 +35,16 @@ m2 = devices.mice[1]
 
 
 def mouse1():
-    event = m.read()
-    print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
+    while True:
+        print 'I read this line at least'
+        event = m.read()
+        print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
 
 def mouse2():
-    event = m2.read()
-    print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
+    while True:
+        print 'I read this line at least'
+        event2 = m2.read()
+        print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
 mouse_1 = threading.Thread(name='mouse1', target=mouse1)
 mouse_2 = threading.Thread(name='mouse2', target=mouse2)
