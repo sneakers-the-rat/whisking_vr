@@ -33,12 +33,12 @@ from inputs import devices
 M1 = devices.mice[0]
 M2 = devices.mice[1]
 
-
-def mouse(m):
-    while True:
-        print 'I read this line at least'
-        event = m.read()
-        print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
+class event(object):
+    def mouse(m):
+        while True:
+            print 'I read this line at least'
+            event = m.read()
+            print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
 
 #def mouse2():
  #   while True:
@@ -46,8 +46,8 @@ def mouse(m):
    #     event2 = m2.read()
     #    print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
-mouse_1 = threading.Thread(name='mouse1', target=mouse, args = (M1,))
-mouse_2 = threading.Thread(name='mouse2', target=mouse, args = (M2,))
+mouse_1 = threading.Thread(name='mouse1', target=event, args = (M1,))
+mouse_2 = threading.Thread(name='mouse2', target=event, args = (M2,))
 
 mouse_1.start()
 mouse_2.start()
