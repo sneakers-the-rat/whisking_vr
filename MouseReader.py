@@ -77,7 +77,7 @@ x2 = 0
 t = 0
 t2 = 0
 while 1:
-    A = time.now()
+    A = time.time()
     events = m.read()
     try:
         for event in events:
@@ -117,7 +117,7 @@ while 1:
     BTheta = lastTheta + BdTheta
             
     #return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
-    B = time.now()
+    B = time.time()
     print BX
     print B-A
         #plotTraj(self):
