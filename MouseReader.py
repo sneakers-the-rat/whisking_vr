@@ -27,6 +27,12 @@ def poll_mouse(mouse, out_queue):
         events = mouse.read()
         frame = {}
         for event in events:
+            if event.code == "REL_X":
+                out_queue.put_nowait([event.state, 0])
+            elif event.code == "REL_Y":
+                out.queue.put_nowait([0, event.state])
+
+            
             # Y events and X events can happen independently
             # yet we always want to return x and y for data consistency
             # simultaneous x and y events will have the same timestamp
@@ -36,35 +42,35 @@ def poll_mouse(mouse, out_queue):
             #frame['x'] = 1
             #frame['y'] = 1
             #out_queue.put_nowait(frame)
-            frame = {}
-            if len(frame) == 0:
-                if event.code == 'REL_X':
-                    frame['ts'] = event.timestamp
-                    frame['x'] = event.state
-                elif event.code == 'REL_Y':
-                    frame['ts'] = event.timestamp
-                    frame['y'] = event.state
-            else:
-                if event.timestamp == frame['ts']:
-                    if event.code == 'REL_X':
-                        frame['ts'] = event.timestamp
-                        frame['x'] = event.state
-                        out_queue.put_nowait(frame)
-                        frame = {}
-                    elif event.code == 'REL_Y':
-                        frame['ts'] = event.timestamp
-                        frame['y'] = event.state
-                        out_queue.put_nowait(frame)
-                        frame = {}
-                else:
-                    if 'x' in frame.keys():
-                        frame['y'] = 0.
-                        out_queue.put_nowait(frame)
-                        frame = {}
-                    else:
-                        frame['x'] = 0.
-                        out.queue.put_nowait(frame)
-                        frame = {}
+##            frame = {}
+##            if len(frame) == 0:
+##                if event.code == 'REL_X':
+##                    frame['ts'] = event.timestamp
+##                    frame['x'] = event.state
+##                elif event.code == 'REL_Y':
+##                    frame['ts'] = event.timestamp
+##                    frame['y'] = event.state
+##            else:
+##                if event.timestamp == frame['ts']:
+##                    if event.code == 'REL_X':
+##                        frame['ts'] = event.timestamp
+##                        frame['x'] = event.state
+##                        out_queue.put_nowait(frame)
+##                        frame = {}
+##                    elif event.code == 'REL_Y':
+##                        frame['ts'] = event.timestamp
+##                        frame['y'] = event.state
+##                        out_queue.put_nowait(frame)
+##                        frame = {}
+##                else:
+##                    if 'x' in frame.keys():
+##                        frame['y'] = 0.
+##                        out_queue.put_nowait(frame)
+##                        frame = {}
+##                    else:
+##                        frame['x'] = 0.
+##                        out.queue.put_nowait(frame)
+##                        frame = {}
                         
                     
 
@@ -94,14 +100,27 @@ while True:
     for queue in queues:
         events = queue_get_all(queue)
         if len(events) == 0:
-            dfs.append(pd.DataFrame({'x' : [0], 'y' : [0]}).sum(0))
+            xy = np.array([0,0], dtype=np.float)
+            dfs.append(xy)
         else:
-            dfs.append(pd.DataFrame.from_records(events).sum(0))
+            xy = np.sum(np.array(events),0)
+            dfs.append(xy)
+        
+        
+##        if len(events) == 0:
+##            dfs.append(pd.DataFrame({'x' : [0], 'y' : [0]}).sum(0))
+##        else:
+##            dfs.append(pd.DataFrame.from_records(events).sum(0))
+##
+##    x1 = dfs[0].x
+##    x2 = dfs[1].x
+##    y1 = dfs[0].y
+##    y2 = dfs[1].y
 
-    x1 = dfs[0].x
-    x2 = dfs[1].x
-    y1 = dfs[0].y
-    y2 = dfs[1].y                                
+    x1 = dfs[0][0]
+    x2 = dfs[1][0]
+    y1 = dfs[0][1]
+    y2 = dfs[1][1]
     
     
     BdX = (x1+x2)/(2*COS45)
