@@ -1,6 +1,6 @@
 from inputs import devices
 from threading import Thread
-from queue import Queue
+from Queue import Queue
 import pandas as pd
 
 import numpy as np
