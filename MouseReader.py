@@ -14,7 +14,7 @@ import time
 
 data = np.zeros((1,8))
 COS45 = np.cos(np.pi/4)
-ballDiameter = 23  #mas o menos
+ballDiameter = 150  #more or less
 x1 = 0
 y1 = 0
 y2 = 0
@@ -33,8 +33,8 @@ def poll_mouse(mouse, out_queue):
             # we stash the timestamp, then compare each next event to see if it matches
             # if so, we assume we got the other one and send the frame
             # if not, we assign the missing value zero and send it.
-            frame['x'] = 1
-            frame['y'] = 1
+            frame['x'] = 0
+            frame['y'] = 0
             out_queue.put_nowait(frame)
             frame = {}
 ##            if len(frame) == 0:
@@ -107,7 +107,8 @@ while True:
     BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
-    B = time.time()
+    
     #print BX
     print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     time.sleep(1)
+    B = time.time()
