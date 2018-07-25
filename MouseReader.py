@@ -101,7 +101,7 @@ while 1:
          #   y2 = event2.state
          #   t2 = event2.timestamp
     except:
-        pass
+        pass 
     BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
@@ -118,7 +118,7 @@ while 1:
             
     #return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
     B = time.time()
-    print BX
+    #print BX
     print B-A
         #plotTraj(self):
         #X = self.data[:,5]
