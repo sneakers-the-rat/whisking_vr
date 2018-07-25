@@ -33,7 +33,7 @@ from inputs import devices
 M1 = devices.mice[0]
 M2 = devices.mice[1]
 
-class event(object):
+class Ball():
     def mouse(m):
         while True:
             print 'I read this line at least'
@@ -46,8 +46,8 @@ class event(object):
    #     event2 = m2.read()
     #    print('{} - moved {} X: {}'.format(event2.timestamp, event2.code, event2.state))
 
-mouse_1 = threading.Thread(name='mouse1', target=mouse, args = (M1,))
-mouse_2 = threading.Thread(name='mouse2', target=mouse, args = (M2,))
+mouse_1 = threading.Thread(name='mouse1', target=Ball, args = (M1,))
+mouse_2 = threading.Thread(name='mouse2', target=Ball, args = (M2,))
 
 mouse_1.start()
 mouse_2.start()
