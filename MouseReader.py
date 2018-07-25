@@ -61,8 +61,8 @@ from inputs import devices
 m = devices.mice[0]
 m2 = devices.mice[1]
 #mouse2 = devices.mice[1]
-mice = {'mouse_1':m}
-        'mouse_2':m2}
+#mice = {'mouse_1':m}
+ #       'mouse_2':m2}
 
 ####################################
 #Run the loop, monitor for movements.
