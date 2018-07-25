@@ -108,7 +108,7 @@ while True:
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
     
+    B = time.time()
     #print BX
     print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     time.sleep(1)
-    B = time.time()
