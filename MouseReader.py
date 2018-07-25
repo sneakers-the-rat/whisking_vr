@@ -93,25 +93,25 @@ while 1:
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
             y2 = event2.state
             t2 = event2.timestamp
-     def initData(self):
-        time1 = t
-        time2 = t2
-        BdX = (y1+y2)/(2*COS45)
-        BdY = (y1-y2)/(2*COS45)
-        BdTheta = -1*(x1+x2)/(ballDiameter)
+     
+    time1 = t
+    time2 = t2
+    BdX = (y1+y2)/(2*COS45)
+    BdY = (y1-y2)/(2*COS45)
+    BdTheta = -1*(x1+x2)/(ballDiameter)
             # Coordinate system with +x (forward), +y (right), +theta (clockwise)
-        DeltaPos = np.array([BdX, BdY, BdTheta]) 
+    DeltaPos = np.array([BdX, BdY, BdTheta]) 
             
-        lastX = data[-1, 8]
-        lastY = data[-1, 9]
-        lastTheta = data[-1, 10]
+    lastX = data[-1, 8]
+    lastY = data[-1, 9]
+    lastTheta = data[-1, 10]
             
-        BX = lastX + (BdX*np.cos(lastTheta)-BdY*np.sin(lastTheta))
-        BY = lastY + (BdX*np.sin(lastTheta)+BdY*np.cos(lastTheta))
-        BTheta = lastTheta + BdTheta
+    BX = lastX + (BdX*np.cos(lastTheta)-BdY*np.sin(lastTheta))
+    BY = lastY + (BdX*np.sin(lastTheta)+BdY*np.cos(lastTheta))
+    BTheta = lastTheta + BdTheta
             
-        return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
-        print BX
+    return np.hstack((time1, time2, BdX, BdY, BdTheta, BX, BY, BTheta))
+    print BX
         #plotTraj(self):
         #X = self.data[:,5]
         #Y = self.data[:,6]
