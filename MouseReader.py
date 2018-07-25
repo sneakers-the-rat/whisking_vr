@@ -70,19 +70,25 @@ m2 = devices.mice[1]
 data = np.zeros((1,8))
 COS45 = np.cos(np.pi/4)
 ballDiameter = 23  #mas o menos
-        
+x1 = 0
+y1 = 0
+y2 = 0
+x2 = 0
+t = 0
+t2 = 0
 while 1:
     events = m.read()
-    for event in events:
-        if event.code == 'REL_X':
-            #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
-            x1 = event.state
-            t = event.timestamp
-            #print x1
-        elif event.code == 'REL_Y':
-            #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
-            y1 = event.state
-            #print y1
+    try:
+        for event in events:
+            if event.code == 'REL_X':
+                #print('{} - moved {} X: {}'.format(event.timestamp, event.code, event.state))
+                x1 = event.state
+                t = event.timestamp
+                #print x1
+         elif event.code == 'REL_Y':
+                #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
+                y1 = event.state
+                #print y1
     #events2 = m2.read()
     #for event2 in events2:
      #   if event2.code == 'REL_X':
@@ -93,11 +99,9 @@ while 1:
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
          #   y2 = event2.state
          #   t2 = event2.timestamp
-    t2 = 0
-    x2 = 0
-    y2 = 0
-    time1 = t
-    time2 = t2
+         except:
+             pass
+        
     BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1*(x1+x2)/(ballDiameter)
