@@ -24,7 +24,7 @@ t2 = 0
 
 def poll_mouse(mouse, out_queue):
     while True:
-        events = m.read()
+        events = mouse.read()
         frame = {}
         for event in events:
             # Y events and X events can happen independently
