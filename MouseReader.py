@@ -99,8 +99,8 @@ while 1:
             #print('{} - moved {} Y: {}'.format(event.timestamp, name, event.state))
          #   y2 = event2.state
          #   t2 = event2.timestamp
-         except:
-             pass
+    except:
+        pass
         
     BdX = (x1+x2)/(2*COS45)
     BdY = (y1-y2)/(2*COS45)
