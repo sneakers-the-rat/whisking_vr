@@ -2,14 +2,19 @@ import RPi.GPIO as GPIO
 from time import sleep
 from datetime import datetime
 from Queue import Queue
-from Threading import Thread
+from threading import Thread
 import signal
 import sys
 
 class Stepper(object):
-    def __init__(self, step_pin, direction_pin, multiplier=1, delay=0.000001, limits=None):
+    def __init__(self, step_pin, direction_pin, multiplier=1, delay=0.000001, limits=None, mode="BCM"):
         GPIO.cleanup()
-        GPIO.setmode(GPIO.BOARD)
+        if mode == "BCM":
+            GPIO.setmode(GPIO.BCM)
+        elif mode == "BOARD":
+            GPIO.setmode(GPIO.BOARD)
+        else:
+            Exception("Unknown mode: {}".format(mode))
 
         # multiplier that converts mouse movements to steps
         self.mult = multiplier
