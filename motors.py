@@ -70,7 +70,7 @@ class Stepper(object):
                 self.pos += steps
 
             # regardless we never want to step 100000
-            if abs(step) > 100000:
+            if abs(steps) > 100000:
                 step = 0
 
             # set step direction
