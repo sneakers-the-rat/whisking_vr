@@ -45,12 +45,12 @@ class Stepper(object):
         self.pin_thread = Thread(target=self.run_pins, args=(self.queue,))
         self.pin_thread.start()
 
-    def _end(self):
+    def _end(self, sig, frame):
         # close writer if ctrl+c
-        def close_writer(signum, frame):
-            print('\nctrl+c pressed, closing pin controller')
-            GPIO.cleanup()
-            sys.exit(0)
+        print('\nctrl+c pressed, closing pin controller')
+        GPIO.cleanup()
+        self.queue.put('END')
+        sys.exit(0)
 
 
     def run_pins(self, queue):
