@@ -8,7 +8,6 @@ import sys
 
 class Stepper(object):
     def __init__(self, step_pin, direction_pin, multiplier=1, delay=0.000001, limits=None, mode="BCM"):
-        GPIO.cleanup()
         if mode == "BCM":
             GPIO.setmode(GPIO.BCM)
         elif mode == "BOARD":
@@ -69,6 +68,10 @@ class Stepper(object):
 
                 # update position
                 self.pos += steps
+
+            # regardless we never want to step 100000
+            if abs(step) > 100000:
+                step = 0
 
             # set step direction
             if steps<0:
