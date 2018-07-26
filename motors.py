@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
+from datetime import datetime
 from Queue import Queue
 from Threading import Thread
 import signal
@@ -75,6 +76,18 @@ class Stepper(object):
                 GPIO.output(self.p_step, 1)
                 GPIO.output(self.p_step, 0)
                 sleep(self.delay)
+
+    def step(self, steps):
+        try:
+            self.queue.put_nowait(int(steps))
+            print('{}: stepping {}'.format(self.timestamp(), steps))
+        except TypeError:
+            print('type error, was steps an int?')
+
+
+
+    def timestamp(self):
+        return datetime.now().strftime("%m-%d-%H:%M:%S.%f")[:-3]
 
 
 
