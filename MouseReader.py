@@ -131,4 +131,4 @@ while True:
     #print BX
     #print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     print('cycle time: {}, x1: {}, y1: {}, x2 : {}, y2 : {}'.format(B-A, x1, y1, x2, y2))
-    time.sleep(0.5)
+    time.sleep(0.1)
