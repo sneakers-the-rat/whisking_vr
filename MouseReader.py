@@ -105,7 +105,7 @@ def stop_run(sig, frame):
 signal.signal(signal.SIGINT, stop_run)
 
 while True:
-    #A = time.time()
+    A = time.time()
     dfs = []
     for queue in queues:
         events = queue_get_all(queue)
@@ -137,7 +137,7 @@ while True:
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1.*(x1+x2)/(ballDiameter)
     
-    #B = time.time()
+    B = time.time()
     #print BX
     #print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     print('cycle time: {}, x1: {}, y1: {}, x2 : {}, y2 : {}'.format(B-A, x1, y1, x2, y2))
