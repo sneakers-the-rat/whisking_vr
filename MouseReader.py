@@ -1,7 +1,8 @@
 from inputs import devices
-from threading import Thread
+from threading import Thread, Event
 from Queue import Queue, Empty
 import pandas as pd
+import signal
 
 import numpy as np
 import time
@@ -22,7 +23,7 @@ x2 = 0
 t = 0
 t2 = 0
 
-def poll_mouse(mouse, out_queue):
+def poll_mouse(mouse, out_queue, stop_sig):
     while True:
         events = mouse.read()
         frame = {}
@@ -31,6 +32,9 @@ def poll_mouse(mouse, out_queue):
                 out_queue.put_nowait([event.state, 0])
             elif event.code == "REL_Y":
                 out_queue.put_nowait([0, event.state])
+
+        if stop_sig.is_set():
+            break
 
             
             # Y events and X events can happen independently
@@ -78,9 +82,10 @@ mice = {'mouse_0':devices.mice[0],
         'mouse_1':devices.mice[1]}
 queues = []
 mouse_threads = []
+stop_sig = Event()
 for m_name, mouse in mice.items():
     queues.append(Queue())
-    mouse_threads.append(Thread(name=m_name, target=poll_mouse, args=(mouse, queues[-1])))
+    mouse_threads.append(Thread(name=m_name, target=poll_mouse, args=(mouse, queues[-1], stop_sig)))
 
 for thread in mouse_threads:
     thread.start()
@@ -94,8 +99,13 @@ def queue_get_all(q):
             break
     return items
 
+# register stop
+def stop_run(sig, frame):
+    stop_sig.set()
+signal.signal(signal.SIGINT, stop_run)
+
 while True:
-    A = time.time()
+    #A = time.time()
     dfs = []
     for queue in queues:
         events = queue_get_all(queue)
@@ -127,7 +137,7 @@ while True:
     BdY = (y1-y2)/(2*COS45)
     BdTheta = -1.*(x1+x2)/(ballDiameter)
     
-    B = time.time()
+    #B = time.time()
     #print BX
     #print('cycle time: {}, dx: {}, dy: {}, theta: {}'.format(B-A, BdX, BdY, BdTheta))
     print('cycle time: {}, x1: {}, y1: {}, x2 : {}, y2 : {}'.format(B-A, x1, y1, x2, y2))
