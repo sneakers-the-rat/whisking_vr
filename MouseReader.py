@@ -3,6 +3,7 @@ from threading import Thread, Event
 from Queue import Queue, Empty
 import pandas as pd
 import signal
+import sys
 
 import numpy as np
 import time
@@ -102,6 +103,7 @@ def queue_get_all(q):
 # register stop
 def stop_run(sig, frame):
     stop_sig.set()
+    sys.exit(0)
 signal.signal(signal.SIGINT, stop_run)
 
 while True:
