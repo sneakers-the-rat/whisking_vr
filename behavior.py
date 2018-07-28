@@ -6,6 +6,7 @@ from Queue import Queue, Empty
 import pandas as pd
 import signal
 import sys
+import numpy as np
 
 import numpy as np
 import time
@@ -73,10 +74,20 @@ def main():
     middle = Stepper(direction_pin=13, step_pin=19, limits=[0, 100000])
     top = Stepper(direction_pin=20, step_pin=21)
 
+    t =0
+    last = True
     # start loop
     while True:
+        t +=1
         moves = get_movements(queues)
         middle.step(moves[0][1])
+        if t % 5000 == 0:
+            if last:
+                last = False
+                top.step(8500)
+            else:
+                last = True
+                top.step(-8500)
 
 if __name__ == "__main__":
     main()
