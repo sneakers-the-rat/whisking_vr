@@ -78,5 +78,8 @@ def main():
         moves = get_movements(queues)
         middle.step(moves[0][1])
 
+if __name__ == "__main__":
+    main()
+
 
 
