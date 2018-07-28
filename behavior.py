@@ -73,6 +73,9 @@ def main():
     # start motors
     middle = Stepper(direction_pin=13, step_pin=19, limits=[0, 100000])
     top = Stepper(direction_pin=20, step_pin=21)
+    bottom = Stepper(direction_pin = 5, step_pin = 6)
+    bottom.delay = 0.05
+
 
     t =0
     last = True
@@ -85,9 +88,11 @@ def main():
             if last:
                 last = False
                 top.step(850)
+                bottom.step(100)
             else:
                 last = True
                 top.step(-850)
+                bottom.step(-100)
 
 if __name__ == "__main__":
     main()
