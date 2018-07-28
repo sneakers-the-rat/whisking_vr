@@ -84,10 +84,10 @@ def main():
         if t % 5000 == 0:
             if last:
                 last = False
-                top.step(8500)
+                top.step(850)
             else:
                 last = True
-                top.step(-8500)
+                top.step(-850)
 
 if __name__ == "__main__":
     main()
